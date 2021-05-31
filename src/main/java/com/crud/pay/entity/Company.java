@@ -1,22 +1,28 @@
 package com.crud.pay.entity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Company implements Serializable
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Company")
+public class Company 
 {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
 	private String cnpj;
 	private float saldo;
 	
+	@OneToMany(mappedBy = "company")
 	private List<Employee> employees = new ArrayList<>();
 	
 	public Company()

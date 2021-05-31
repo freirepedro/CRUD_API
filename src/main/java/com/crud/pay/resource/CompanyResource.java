@@ -1,8 +1,5 @@
 package com.crud.pay.resource;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +16,10 @@ public class CompanyResource
 {
 	
 	@Autowired
-	private CompanyRepository companyRepo = new CompanyRepository(); 
+	private CompanyRepository companyRepo; 
 
 	@GetMapping
-	public ResponseEntity<List<Company>> findAll()
+	public ResponseEntity<Iterable<Company>> findAll()
 	{	
 		return ResponseEntity.ok().body(companyRepo.findAll());
 	}
@@ -30,7 +27,7 @@ public class CompanyResource
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Company> findById(@PathVariable Long id)
 	{
-		return ResponseEntity.ok().body(companyRepo.findById(id));
+		return ResponseEntity.ok().body(companyRepo.findById(id).get());
 	}
 	
 }

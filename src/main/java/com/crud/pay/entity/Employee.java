@@ -1,24 +1,30 @@
 package com.crud.pay.entity;
 
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-public class Employee implements Serializable
+@Entity
+@Table(name = "Company")
+public class Employee 
 {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
 	private float saldo;
-	private Company company;
 	private String CPF;
 	private String RG;
-	public Long getId() {
-		return id;
-	}
+	
+	@ManyToOne
+	@JoinColumn(name="company_id")
+	private Company company;
+	
 	
 	public Employee()
 	{
@@ -35,6 +41,9 @@ public class Employee implements Serializable
 		RG = rG;
 	}
 
+	public Long getId() {
+		return id;
+	}
 	public void setId(Long id) {
 		this.id = id;
 	}
