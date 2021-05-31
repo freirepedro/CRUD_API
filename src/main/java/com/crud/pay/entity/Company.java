@@ -20,7 +20,7 @@ public class Company
 	private Long id;
 	private String name;
 	private String cnpj;
-	private float saldo;
+	private double saldo;
 	
 	@OneToMany(mappedBy = "company")
 	private List<Employee> employees = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Company
 		
 	}
 	
-	public Company(Long id, String name, String cnpj, float saldo) 
+	public Company(Long id, String name, String cnpj, double saldo) 
 	{
 		super();
 		this.id = id;
@@ -56,10 +56,10 @@ public class Company
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	public float getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
-	public void setSaldo(float saldo) {
+	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
 	public List<Employee> getEmployees() {
@@ -76,7 +76,6 @@ public class Company
 		result = prime * result + ((cnpj == null) ? 0 : cnpj.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + Float.floatToIntBits(saldo);
 		return result;
 	}
 
@@ -103,8 +102,6 @@ public class Company
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
-			return false;
-		if (Float.floatToIntBits(saldo) != Float.floatToIntBits(other.saldo))
 			return false;
 		return true;
 	}
